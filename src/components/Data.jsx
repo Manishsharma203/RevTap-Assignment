@@ -2,12 +2,15 @@ import React from 'react'
 import {useSelector} from 'react-redux'
 
 function Data(){
+    // fetching state keys from redux store
     const currentPage= useSelector(state=>state.currentPage)
     const customers= useSelector(state=>state.customers)
     const dataPerPage= useSelector(state=>state.dataPerPage)
+
     return (
         <div>
-            <table className='table'>
+            {/* Customer database table */}
+            <table className='table border border-dark'>
                 <thead>
                     <tr className='bg-dark text-white'>
                         <th>#</th>
@@ -24,7 +27,7 @@ function Data(){
                     .filter((e,i)=>i>=(currentPage-1)*dataPerPage && i<=(currentPage*dataPerPage)-1)
                     .map((e,i)=>
                      <tr key={e.id}>
-                         <td>{((currentPage-1)*10)+(i+1)}</td>
+                         <td>{((currentPage-1)*dataPerPage)+(i+1)}</td>
                          <td>{e.id}</td>
                          <td>{e.firstName}</td>
                          <td>{e.lastName}</td>
@@ -37,7 +40,6 @@ function Data(){
             </table>
         </div>
     )
-
 }
 
 export default Data

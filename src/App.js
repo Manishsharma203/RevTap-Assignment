@@ -1,21 +1,29 @@
 import React, {useEffect} from 'react';
 import './App.css';
 import {useDispatch} from 'react-redux'
-import CustomersData from './components/CustomersData';
-import OrdersCount from './components/OrdersCount';
 import {fetchdata} from './redux/actions'
-import OrdersTotalPrice from './components/OrdersTotalPrice';
+import { Link } from 'react-router-dom'
+import Routes from './Routes/Routes';
 
 function App() {
+
+  //fetching database and storing locally
   const dispatch= useDispatch()
   useEffect(() => {
       dispatch(fetchdata())
   },[])
+
   return (
     <div className="App">
-        <CustomersData/>
-        {/* <OrdersCount/> */}
-        {/* <OrdersTotalPrice/> */}
+        {/* Navbar */}
+        <div className='p-2'>  
+          <Link to='/'>
+            <img src='Revtap_logo.png' alt='logo'/>
+          </Link>
+        </div>
+
+        {/* Routes */}
+        <Routes/>
     </div>
   );
 }

@@ -8,10 +8,19 @@ var initialState={
     dataPerPage: 10,
     totalPages: 0,
     dataLoaded: false,
+    error:false
 }
 
 export const reducers=(state=initialState,action)=>{
     switch (action.type) {
+        // data fetching initiation
+        case REQUEST_FETCH:
+            return { 
+            ...state, 
+            error: false
+            }
+
+        // successfull data fetching
         case FETCH_DATA:
             //creating array of DaywiseOrders
             let ordersObject={}
@@ -28,13 +37,25 @@ export const reducers=(state=initialState,action)=>{
                 }
             }
             let ordersArray= Object.entries(ordersObject)
-            console.log('ordersArray',ordersArray)
+            // console.log('ordersArray',ordersArray)
+
             return {...state,
                 customers:action.payload.data.customers,
                 orders:action.payload.data.orders,
                 DaywiseOrders:ordersArray,
-                totalPages: action.payload.data.customers.length/state.dataPerPage,
-                dataLoaded: true}
+                totalPages: Math.ceil(action.payload.data.customers.length/state.dataPerPage),
+                dataLoaded: true
+            }
+
+        // data fetching failure
+        case REQUEST_FAILURE:
+            console.log(action.payload)
+            return { 
+            ...state,
+            error: true
+            }
+
+        // changing the currentPage variable
         case CHANGE_PAGE:
             return {...state,
             currentPage:action.payload

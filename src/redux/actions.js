@@ -23,6 +23,7 @@ export const changePage=(payload)=>({
     type:CHANGE_PAGE,
     payload
 })
+
 export const fetchdata=(query=null)=>{
     return dispatch => {
         dispatch(fetchReq)
@@ -32,6 +33,6 @@ export const fetchdata=(query=null)=>{
                 // console.log(res)
                 return dispatch(fetchAllData(res))
             })
-            .catch(err=>console.log(err))
+            .catch(err=>dispatch(fetchFail(err)))
     }
 }

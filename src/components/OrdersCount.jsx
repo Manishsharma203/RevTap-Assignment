@@ -4,12 +4,16 @@ import { useSelector } from 'react-redux';
 
 function OrdersCount() {
 
+    // fetching state keys from redux store
     const DaywiseOrders= useSelector(state=>state.DaywiseOrders)
+    
+    // Distrbuting data into two diff arrays to be shown on both axis
     const NumberOfOrders= DaywiseOrders.map(e=>e[1][0])
     const DaysOfOrders= DaywiseOrders.map(e=>e[0])
 
     console.log('DaywiseOrders',DaywiseOrders)
     console.log('NumberOfOrders',NumberOfOrders)
+    
     // Bar chart implementation
     const chart = {
         series: [{

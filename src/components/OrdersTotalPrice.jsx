@@ -5,9 +5,15 @@ import { useSelector } from 'react-redux';
 
 function OrdersTotalPrice(){
 
+    // fetching state keys from redux store
     const DaywiseOrders= useSelector(state=>state.DaywiseOrders)
+    
+    // Distrbuting data into two diff arrays to be shown on both axis
     const PricePerDay= DaywiseOrders.map(e=>e[1][1])
     const DaysOfOrders= DaywiseOrders.map(e=>e[0])
+
+    console.log('PricePerDay',PricePerDay)
+    console.log('DaysOfOrders',DaysOfOrders)
 
     // line chart implementation
     const lineChart = {
