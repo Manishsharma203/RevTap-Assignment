@@ -1,17 +1,17 @@
 import axios from 'axios'
 
 export const REQUEST_FETCH='REQUEST_FETCH'
-export const REQUEST_CUSTOMERDATA='REQUEST_CUSTOMERDATA'
+export const FETCH_DATA='FETCH_DATA'
 export const REQUEST_FAILURE='REQUEST_FAILURE'
 export const CHANGE_PAGE='CHANGE_PAGE'
-export const LOADING='LOADING'
+export const DATASHOWN='DATASHOWN'
 
 export const fetchReq=(payload)=>({
     type:REQUEST_FETCH,
     payload
 })
-export const fetchCustomerData=(payload)=>({
-    type:REQUEST_CUSTOMERDATA,
+export const fetchAllData=(payload)=>({
+    type:FETCH_DATA,
     payload
 })
 export const fetchFail=(payload)=>({
@@ -23,11 +23,6 @@ export const changePage=(payload)=>({
     type:CHANGE_PAGE,
     payload
 })
-export const loading=(payload)=>({
-    type:LOADING,
-    payload
-})
-
 export const fetchdata=(query=null)=>{
     return dispatch => {
         dispatch(fetchReq)
@@ -35,7 +30,7 @@ export const fetchdata=(query=null)=>{
             .get('/database/db.json')
             .then(res=>{
                 // console.log(res)
-                return dispatch(fetchCustomerData(res))
+                return dispatch(fetchAllData(res))
             })
             .catch(err=>console.log(err))
     }

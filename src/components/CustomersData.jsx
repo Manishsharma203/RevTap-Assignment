@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react'
-// import {useDispatch, useSelector} from 'react-redux'
-// import {fetchdata} from '../redux/actions'
+import React from 'react'
 import Pagination from './Pagination'
+import Data from './Data'
 
 function CustomersData(){
     return(
         <div>
+            <Data/>
             <Pagination />
         </div>
     )
